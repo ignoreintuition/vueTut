@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue.JS</title>
+</head>
+<body>
+
+<div id="myApp">
+  <h1> {{header}}</h1>
+<span v-if="test"> {{message}} </span>
+<ul>
+  <li v-for="item in arr">{{item.name}}  </li>
+</ul>
+</div>
+</body>
+<script src="https://unpkg.com/vue"></script>
+
+<script>
+var app = new Vue ({
+  el: "#myApp",
+  data: {
+    header: "this is our header",
+    message: "Hey, I'm a Vue Programmer",
+    test: false,
+    arr: [
+      {name: "Brian"},
+      {name: "Sal"},
+      {name: "Mary"},
+      {name: "Jim"},
+
+    ]
+  }
+})
+</script>
+</html>
