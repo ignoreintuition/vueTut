@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue.JS</title>
+</head>
+<body>
+
+<div id="myApp">
+  <div v-for="post in posts">
+    <h1>{{post.header}}</h1>
+    <p>{{post.message}}</p>
+  </div>
+  <form>
+    <input v-model="newPost.newHeader">
+    <input v-model="newPost.newMessage">
+  </form>
+  <button v-on:click="add()"> New Message</button>
+
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/vue"></script>
+
+<script>
+var test = function(d){
+  var app = new Vue ({
+    el: "#myApp",
+    data: {
+      posts: d.posts,
+      "newPost": {
+        "newHeader": null,
+        "newMessage": null
+      }
+    },
+    methods: {
+      add: function() {
+        this.posts.push(
+          {"header": this.newPost.newHeader,
+          "message": this.newPost.newMessage
+        }
+        )
+      }
+    }
+  })
+}
+$.getJSON('test.json', test)
+</script>
+</html>

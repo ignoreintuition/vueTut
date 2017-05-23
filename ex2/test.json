@@ -1,0 +1,12 @@
+{
+  "posts": [
+    {
+      "header": "this is our header",
+      "message": "Hey, I'm a Vue Programmer"
+    },
+    {
+      "header": "this is also a header",
+      "message": "Hey, I'm also Vue Programmer"
+    }
+  ]
+}
