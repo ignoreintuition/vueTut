@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue.JS</title>
+</head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<body>
+  <div class="container" id="myApp">
+    <div class="row" v-for="post in posts">
+      <div class="col-lg-12">
+        <h2>{{post.header}}</h2>
+        <p>{{post.message}}</p>
+        <div v-if="post.isEdit">
+          <input v-model="post.message">
+          <button v-on:click="save(post)"> save </button>
+        </div>
+        <button v-if="!post.isEdit" v-on:click="edit(post)"> edit </button>
+      </div>
+    </div>
+    <div class="row input-group">
+      <div class="col-lg-12">
+        <h3> Add a new message </h3>
+        <input type="text" class="form-control" v-model="newPost.newHeader">
+        <input type="text" class="form-control" v-model="newPost.newMessage">
+        <button class="btn btn-default" v-on:click="add()"> Add Post </button>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="https://unpkg.com/vue"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script>
+  var setData = function(d) {
+    var app = new Vue({
+      el: "#myApp",
+      data: {
+        "posts": d.posts,
+        "newPost": {
+          "newHeader": null,
+          "newMessage": null,
+          "isEdit": false
+        }
+      },
+      methods: {
+        add: function() {
+          this.posts.push({
+            header: this.newPost.newHeader,
+            message: this.newPost.newMessage,
+            isEdit: false
+          })
+        },
+        edit: function(p) {
+          p.isEdit = true;
+        },
+        save: function(p) {
+          p.isEdit = false;
+        }
+
+      }
+    })
+  }
+  $.getJSON('test.json', setData)
+</script>
+
+</html>

@@ -17,35 +17,33 @@
     <input v-model="newPost.newHeader">
     <input v-model="newPost.newMessage">
   </form>
-  <button v-on:click="add()"> New Message</button>
-
+  <button v-on:click="add()"> Add Post </button>
 </div>
 </body>
-<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/vue"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 
 <script>
-var test = function(d){
-  var app = new Vue ({
-    el: "#myApp",
-    data: {
-      posts: d.posts,
-      "newPost": {
-        "newHeader": null,
-        "newMessage": null
-      }
-    },
-    methods: {
-      add: function() {
-        this.posts.push(
-          {"header": this.newPost.newHeader,
-          "message": this.newPost.newMessage
-        }
-        )
-      }
+var setData = function(d) {
+var app = new Vue ({
+  el: "#myApp",
+  data: {
+    "posts": d.posts,
+    "newPost": {
+      "newHeader": null,
+      "newMessage": null
     }
-  })
+  },
+  methods: {
+    add: function(){
+      this.posts.push({
+        header: this.newPost.newHeader,
+        message: this.newPost.newMessage
+      })
+    }
+  }
+})
 }
-$.getJSON('test.json', test)
+$.getJSON('test.json', setData)
 </script>
 </html>

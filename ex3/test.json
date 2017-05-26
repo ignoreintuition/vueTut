@@ -3,11 +3,12 @@
     {
       "header": "this is our header",
       "message": "Hey, I'm a Vue Programmer",
-      
+      "isEdit": false
     },
     {
       "header": "this is also a header",
-      "message": "Hey, I'm also Vue Programmer"
+      "message": "Hey, I'm also Vue Programmer",
+      "isEdit": false
     }
   ]
 }
